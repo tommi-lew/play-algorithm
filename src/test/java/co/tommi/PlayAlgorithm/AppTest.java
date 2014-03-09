@@ -7,7 +7,7 @@ import junit.framework.TestSuite;
 /**
  * Unit test for simple App.
  */
-public class AppTest 
+public class AppTest
     extends TestCase
 {
     /**
@@ -28,11 +28,26 @@ public class AppTest
         return new TestSuite( AppTest.class );
     }
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
+	public void testBinarySearchWithOddNoOfValues() {
+		int[] values = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+		assertEquals("return correct position", 0, App.binarySearch(values, 1, 0, values.length - 1));
+		assertEquals("return correct position", 3, App.binarySearch(values, 4, 0, values.length - 1));
+		assertEquals("return correct position", 8, App.binarySearch(values, 9, 0, values.length - 1));
+	}
+
+	public void testBinarySearchWithEvenNoOfValues() {
+		int[] values = new int[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+		assertEquals("return correct position", 0, App.binarySearch(values, 1, 0, values.length - 1));
+		assertEquals("return correct position", 3, App.binarySearch(values, 4, 0, values.length - 1));
+		assertEquals("return correct position", 4, App.binarySearch(values, 5, 0, values.length - 1));
+		assertEquals("return correct position", 7, App.binarySearch(values, 8, 0, values.length - 1));
+	}
+
+	public void testBinarySearchWithNoValues() {
+		assertEquals("return 99999999 if array is empty", 99999999, App.binarySearch(new int[] {}, 2, 0, 0));
+	}
+
+	public void testBinarySearchWithOneValue() {
+		assertEquals("return correct position", 0, App.binarySearch(new int[] { 5 }, 5, 0, 0));
+	}
 }
