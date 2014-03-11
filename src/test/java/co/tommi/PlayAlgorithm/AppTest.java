@@ -33,6 +33,8 @@ public class AppTest
 		assertEquals("return correct position", 0, App.binarySearch(values, 1, 0, values.length - 1));
 		assertEquals("return correct position", 3, App.binarySearch(values, 4, 0, values.length - 1));
 		assertEquals("return correct position", 8, App.binarySearch(values, 9, 0, values.length - 1));
+
+		assertEquals("return correct position", 0, App.binarySearch(new int[] { 5 }, 5, 0, 0));
 	}
 
 	public void testBinarySearchWithEvenNoOfValues() {
@@ -41,13 +43,17 @@ public class AppTest
 		assertEquals("return correct position", 3, App.binarySearch(values, 4, 0, values.length - 1));
 		assertEquals("return correct position", 4, App.binarySearch(values, 5, 0, values.length - 1));
 		assertEquals("return correct position", 7, App.binarySearch(values, 8, 0, values.length - 1));
+
+		values = new int[] { 8, 9 };
+		assertEquals("return correct position", 0, App.binarySearch(values, 8, 0, values.length - 1));
+		assertEquals("return correct position", 1, App.binarySearch(values, 9, 0, values.length - 1));
 	}
 
-	public void testBinarySearchWithNoValues() {
-		assertEquals("return 99999999 if array is empty", 99999999, App.binarySearch(new int[] {}, 2, 0, 0));
+	public void testBinarySearchWithNoMatchingValues() {
+		assertEquals("return -1 if array is empty", -1, App.binarySearch(new int[] {}, 2, 0, 0));
 	}
 
-	public void testBinarySearchWithOneValue() {
-		assertEquals("return correct position", 0, App.binarySearch(new int[] { 5 }, 5, 0, 0));
+	public void testBinarySearchWithOneValueAndNoneMatching() {
+		assertEquals("return -1", -1, App.binarySearch(new int[] { 1 }, 2, 0, 0));
 	}
 }
