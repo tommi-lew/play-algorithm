@@ -13,12 +13,21 @@ public class App
      * @return
      */
     public static int binarySearch(int[] values, int key, int ssMin, int ssMax) {
-    	System.out.println("ssMin: " + ssMin + " ssMax: " + ssMax);
+    	System.out.println("SS Min: " + ssMin + "\tSS Max: " + ssMax);
 
     	if (values.length == 0)
-    		return 99999999;
+    		return -1;
 
-    	int midPos = ssMin + ((ssMax - ssMin) / 2) ;
+    	if (values.length == 1) {
+    		if (values[ssMin] == key) {
+    			return ssMin;
+    		} else {
+    			return -1;
+    		}
+    	}
+
+    	// (n + 1) / 2
+    	int midPos = ssMin + ((ssMax - ssMin + 1) / 2);
 
     	if (values[midPos] > key) {
     		return binarySearch(values, key, ssMin, midPos-1);
